@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import {Component} from "react";
+import Func from "./components/func"
+import Clss from "./components/clss";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+class App extends Component{
+  state={
+    cls:false,
+    func:false,
+  };
+  render(){
+    return(
+      <div className="App">
+        <h1 className="heading"> Styling using Functional and Class Component</h1>
+        <div className="flex">
+          <button className="btn1" onClick={() => {
+            if (this.state.cls === false)
+              this.setState({ cls: true });
+            if (this.state.cls)
+              this.setState({ cls: false });
+          }}
+          >To see styling in class component</button>
+          <button className="btn2" onClick={() => {
+            if (this.state.func === false)
+              this.setState({ func: true });
+            if (this.state.func)
+              this.setState({ func: false });
+          }}>To see styling in functional component</button>
+        </div>
+        <div className="flex">
+          <div style={{ visibility: this.state.cls? "visible" : "hidden" }}>
+            <Clss />
+          </div>
+          <div style={{ visibility: this.state.func ? "visible" : "hidden" }}>
+            <Func />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
+
 
 export default App;
